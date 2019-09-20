@@ -37,6 +37,7 @@ import okhttp3.Callback;
 import okhttp3.Response;
 
 public class WeatherActivity extends AppCompatActivity {
+    private Toast toast;
     public DrawerLayout drawerLayout;
     private Button navButton;
     private ScrollView weatherLayout;
@@ -63,6 +64,7 @@ public class WeatherActivity extends AppCompatActivity {
             getWindow().setStatusBarColor(Color.TRANSPARENT);
         }
         setContentView(R.layout.activity_weather);
+        toast=Toast.makeText(this,"再按一次退出",Toast.LENGTH_SHORT);
         drawerLayout=findViewById(R.id.drawer_layout);
         navButton=findViewById(R.id.nav_button);
         weatherLayout=findViewById(R.id.weather_layout);
@@ -208,5 +210,21 @@ public class WeatherActivity extends AppCompatActivity {
         weatherLayout.setVisibility(View.VISIBLE);
         Intent intent=new Intent(this, AutoUpdateService.class);
         startService(intent);
+    }
+
+    @Override
+    public void onBackPressed() {
+        if(drawerLayout!=null&&drawerLayout.isDrawerOpen(GravityCompat.START)){
+            ChooseAreaFragment fragment=(ChooseAreaFragment)getSupportFragmentManager().findFragmentById(R.id.choose_area_fragment);
+            if(fragment.onBackPress()==ChooseAreaFragment.LEVEL_PROVINCE) {
+                drawerLayout.closeDrawers();
+            }
+        }else {
+            if(null==toast.getView().getParent()){
+                toast.show();
+            }else {
+                System.exit(0);
+            }
+        }
     }
 }

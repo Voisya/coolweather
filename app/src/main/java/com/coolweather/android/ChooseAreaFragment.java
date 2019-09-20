@@ -109,6 +109,19 @@ public class ChooseAreaFragment extends Fragment {
         queryProvinces();
     }
 
+    public int onBackPress(){
+        if(currentLevel==LEVEL_COUNTY){
+            queryCities();
+            return LEVEL_COUNTY;
+        }else if(currentLevel==LEVEL_CITY){
+            queryProvinces();
+            return LEVEL_CITY;
+        }else if(currentLevel==LEVEL_PROVINCE){
+            return LEVEL_PROVINCE;
+        }
+        return LEVEL_PROVINCE;
+    }
+
     private void queryProvinces(){
         titleText.setText("中国");
         backButton.setVisibility(View.GONE);
