@@ -3,40 +3,85 @@ package com.coolweather.android.db;
 import org.litepal.crud.DataSupport;
 
 public class City extends DataSupport {
-    private int id;
-    private String cityName;
-    private int cityCode;
-    private int provinceId;
+    private String weaId;
+    private String cityEn;
+    private String cityZh;
+    private String provinceEn;
+    private String provinceZh;
+    private String leaderEn;
+    private String leaderZh;
+    private String lat;
+    private String lon;
 
-    public int getId() {
-        return id;
+    public String getWeaId() {
+        return weaId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setWeaId(String id) {
+        this.weaId = id;
     }
 
-    public String getCityName() {
-        return cityName;
+    public String getCityEn() {
+        return cityEn;
     }
 
-    public void setCityName(String cityName) {
-        this.cityName = cityName;
+    public void setCityEn(String cityEn) {
+        this.cityEn = cityEn;
     }
 
-    public int getCityCode() {
-        return cityCode;
+    public String getCityZh() {
+        return cityZh;
     }
 
-    public void setCityCode(int cityCode) {
-        this.cityCode = cityCode;
+    public void setCityZh(String cityZh) {
+        this.cityZh = cityZh;
     }
 
-    public int getProvinceId() {
-        return provinceId;
+    public String getProvinceEn() {
+        return provinceEn;
     }
 
-    public void setProvinceId(int provinceId) {
-        this.provinceId = provinceId;
+    public void setProvinceEn(String provinceEn) {
+        this.provinceEn = provinceEn;
+    }
+
+    public String getProvinceZh() {
+        return provinceZh;
+    }
+
+    public void setProvinceZh(String provinceZh) {
+        this.provinceZh = provinceZh;
+    }
+
+    public String getLeaderEn() {
+        return leaderEn;
+    }
+
+    public void setLeaderEn(String leaderEn) {
+        this.leaderEn = leaderEn;
+    }
+
+    public String getLeaderZh() {
+        return leaderZh;
+    }
+
+    public void setLeaderZh(String leaderZh) {
+        this.leaderZh = leaderZh;
+    }
+
+    public String getLat() {
+        return lat;
+    }
+
+    public void setLat(String lat) {
+        this.lat = lat;
+    }
+
+    public String getLon() {
+        return lon;
+    }
+
+    public void setLon(String lon) {
+        this.lon = lon;
     }
 }

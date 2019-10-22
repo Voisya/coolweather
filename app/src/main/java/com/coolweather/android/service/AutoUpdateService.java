@@ -8,9 +8,7 @@ import android.content.SharedPreferences;
 import android.os.IBinder;
 import android.os.SystemClock;
 import android.preference.PreferenceManager;
-import android.widget.Toast;
 
-import com.coolweather.android.WeatherActivity;
 import com.coolweather.android.gson.Weather;
 import com.coolweather.android.util.HttpUtil;
 import com.coolweather.android.util.Utility;
@@ -51,8 +49,8 @@ public class AutoUpdateService extends Service {
         String weatherString=prefs.getString("weather",null);
         if(weatherString!=null) {
             Weather weather = Utility.handleWeatherResponse(weatherString);
-            String weatherId = weather.basic.weatherId;
-            String weatherUrl="http://guolin.tech/api/weather?cityid="+weatherId;
+            String weatherId = weather.cityid;
+            String weatherUrl="https://www.tianqiapi.com/api/?version=v1&appid=59472617&appsecret=yfDgnl3e&cityid="+weatherId;
             HttpUtil.sendOkHttpRequest(weatherUrl, new Callback() {
                 @Override
                 public void onFailure(@NotNull Call call, @NotNull IOException e) {
@@ -63,7 +61,7 @@ public class AutoUpdateService extends Service {
                 public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                     final String responseText=response.body().string();
                     final Weather weather=Utility.handleWeatherResponse(responseText);
-                    if(weather!=null&&"ok".equals(weather.status)) {
+                    if(weather!=null) {
                         SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(AutoUpdateService.this).edit();
                         editor.putString("weather", responseText);
                         editor.apply();;
